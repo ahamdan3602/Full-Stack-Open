@@ -15,16 +15,14 @@
  */
 const Hello = (props) => {
   // Helper functions
-  const bornYear = () => {
-    const yearNow = new Date().getFullYear();
-    return yearNow - props.age;
-  };
+  const bornYear = () => new Date().getFullYear() - age;
 
-  console.log(props);
+  const name = props.name;
+  const age = props.age;
   return (
     <div>
       <p>
-        Hello {props.name}, you are {props.age} years old
+        Hello {name}, you are {age} years old
       </p>
       <p>So you were probably born in {bornYear()}</p>
     </div>
