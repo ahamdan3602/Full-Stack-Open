@@ -13,36 +13,35 @@
  * the parameter receives an object, which has fields corresponding to all the "props" the user of the
  * component defines.
  */
-const Hello = (props) => {
+const Hello = ({ name, age }) => {
   // Helper functions
-  const bornYear = () => new Date().getFullYear() - age;
 
-  const name = props.name;
-  const age = props.age;
+  // const name = props.name;
+  // const age = props.age;
+
+  // Destructuring props
+
+  /** Works as such
+   * props = {
+   *    name: 'Arto Helas',
+   *    age: 35,
+   * }
+   * The expression const {name, age} = props assigns the values 'Artos Hellas' to name and 35 to age.
+   */
+  const bornYear = () => new Date().getFullYear() - age;
   return (
     <div>
       <p>
-        Hello {name}, you are {age} years old
+        Hello {name}, you are {age} years old{" "}
       </p>
       <p>So you were probably born in {bornYear()}</p>
     </div>
   );
 };
 
-const App = () => {
-  const name = "Peter";
-  const age = 10;
-  return (
-    // Component will be rendered as a div tag which wraps a p-tag containing the text Hello World
-    <div>
-      <p>Greetings</p>
-      <Hello name="Daisy" age={20} />
-      {/**Defined a new component Hello and used it inside component App */}
-      <Hello name="George" age={35} />
-      <Hello name="Maya" age={26 + 10} />
-      <Hello name={name} age={age} />
-    </div>
-  );
+const App = (props) => {
+  const { counter } = props;
+  return <div>{counter}</div>;
 };
 
 // Technically defined as a function: () => {}.... Which is also assigned to constant variable called App
