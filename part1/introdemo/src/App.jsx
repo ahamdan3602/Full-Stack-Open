@@ -7,27 +7,11 @@
 //   );
 // };
 
+// the file imports useState function
+import { useState } from "react";
 //Props
-/**
- * Now the function defining the component has a parameter props. As an argument,
- * the parameter receives an object, which has fields corresponding to all the "props" the user of the
- * component defines.
- */
+
 const Hello = ({ name, age }) => {
-  // Helper functions
-
-  // const name = props.name;
-  // const age = props.age;
-
-  // Destructuring props
-
-  /** Works as such
-   * props = {
-   *    name: 'Arto Helas',
-   *    age: 35,
-   * }
-   * The expression const {name, age} = props assigns the values 'Artos Hellas' to name and 35 to age.
-   */
   const bornYear = () => new Date().getFullYear() - age;
   return (
     <div>
@@ -39,8 +23,14 @@ const Hello = ({ name, age }) => {
   );
 };
 
-const App = (props) => {
-  const { counter } = props;
+const App = () => {
+  /* The function adds state to the component and
+   * renders it initialzied with the value zero.
+   *
+   */
+  const [counter, setCounter] = useState(0);
+
+  setTimeout(() => setCounter(counter + 1), 1000);
   return <div>{counter}</div>;
 };
 
