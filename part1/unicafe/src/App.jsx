@@ -21,9 +21,9 @@ const Statistics = (props) => {
       <StatisticsLine text="good" value={props.good} />
       <StatisticsLine text="neutral" value={props.neutral} />
       <StatisticsLine text="bad" value={props.bad} />
-      <p>all {total}</p>
-      <p>average {average}</p>
-      <p>positive {positive}</p>
+      <StatisticsLine text="all" value={total} />
+      <StatisticsLine text="average" value={average} />
+      <StatisticsLine text="positive" value={positive} />
     </>
   );
 };
