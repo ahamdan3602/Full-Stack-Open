@@ -7,12 +7,32 @@ const History = (props) => {
   return <div>button press history: {props.allClicks.join(" ")}</div>;
 };
 
-const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
+const Button = (props) => {
+  console.log("props value is ", props);
+  const { onClick, text } = props;
+  return <button onClick={onClick}>{text}</button>;
+};
+
 const App = () => {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
   const [allClicks, setAll] = useState([]);
   const [total, setTotal] = useState(0);
+  const [value, setValue] = useState(10);
+
+  const handleClick = () => {
+    console.log("clicked the button");
+    setValue(0);
+  };
+
+  const setToValue = (newValue) => {
+    console.log("value now", newValue); // print the new value to console
+    setValue(newValue);
+  };
+
+  const hello = (who) => () => {
+    console.log("hello", who);
+  };
 
   const handleLeftClick = () => {
     setAll(allClicks.concat("L"));
@@ -36,6 +56,14 @@ const App = () => {
     <div>
       {left}
       <Button onClick={handleLeftClick} text="left" />
+      {value}
+      <button onClick={hello("world")}>button</button>
+      <button onClick={hello("react")}>button</button>
+      <button onClick={hello("function")}>button</button>
+      <button onClick={() => setToValue(1000)}>thousand</button>
+      <button onClick={() => setToValue(0)}>reset</button>
+      <button onClick={() => setToValue(value + 1)}>increment</button>
+
       <Button onClick={handleRightClick} text="right" />
       {right}
       <History allClicks={allClicks} />
