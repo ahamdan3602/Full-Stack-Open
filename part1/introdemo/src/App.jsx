@@ -15,11 +15,6 @@ const App = () => {
   const [total, setTotal] = useState(0);
   const [value, setValue] = useState(10);
 
-  const handleClick = () => {
-    console.log("clicked the button");
-    setValue(0);
-  };
-
   const setToValue = (newValue) => {
     console.log("value now", newValue); // print the new value to console
     setValue(newValue);
