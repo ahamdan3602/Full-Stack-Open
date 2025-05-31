@@ -2,11 +2,25 @@ import { useState } from "react";
 
 const Button = (props) => <button onClick={props.onClick}>{props.text}</button>;
 
-const StatisticsLine = (props) => (
-  <p>
-    {props.text} {props.value}
-  </p>
-);
+const StatisticsLine = (props) => {
+  const value = props.value.toFixed(2);
+  if (props.text === "positive") {
+    return (
+      <tr>
+        <td>{props.text}</td>
+        <td>{value} %</td>
+      </tr>
+    );
+  }
+  return (
+    <>
+      <tr>
+        <td>{props.text}</td>
+        <td>{value}</td>
+      </tr>
+    </>
+  );
+};
 
 const Statistics = (props) => {
   const total = props.good + props.bad + props.neutral;
