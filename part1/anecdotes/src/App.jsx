@@ -35,13 +35,15 @@ const App = () => {
 
   const mostVotes = () => {
     let res = votes[0];
-    for (let i = 0; i < votes.length; i++) {
+    let idx = 0;
+    for (let i = 1; i < votes.length; i++) {
       if (votes[i] > res) {
         res = votes[i];
+        idx = i;
       }
     }
 
-    return res;
+    return idx;
   };
 
   return (
