@@ -1,18 +1,30 @@
+// eslint-disable-next-line no-unused-vars
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 const App = (props) => {
   const { notes } = props;
 
+  // map will always create a new array of whic have been created from elements of the original array by mapping
+  // -> using the function given as a paramete to the map method
+
+  /**
+   * Full form would be
+   * const res = notes.map((note) => {
+   *    return note.id
+   * })
+   */
+  const res = notes.map((note) => note);
+  console.log(res);
+  // returns an array containng the contents of the notes
+
   return (
     <div>
       <h1>Notes</h1>
       <ul>
-        <li>{notes[0].content}</li>
-        <li>{notes[1].content}</li>
-        <li>{notes[2].content}</li>
+        {notes.map((note, i) => (
+          <li key={i}>{note.content}</li>
+        ))}
       </ul>
     </div>
   );
