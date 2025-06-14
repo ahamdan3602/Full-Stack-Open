@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { useState } from "react";
 import "./App.css";
-import Note from "./components/Note";
+import Note from "./components/Note.jsx";
 
 const App = ({ notes }) => {
   // map will always create a new array of whic have been created from elements of the original array by mapping
