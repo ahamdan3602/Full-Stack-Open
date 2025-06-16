@@ -1,19 +1,22 @@
 const Course = (props) => {
-  const { name, parts } = props.course;
-
-  const sum = parts.reduce((sum, part) => sum + part.exercises, 0);
+  const { courses } = props;
   return (
     <>
-      <h1>{name}</h1>
+      <h1>Web Development Curriculum</h1>
 
-      <ul>
-        {parts.map((part) => (
-          <li>
-            {part.name} {part.exercises}
-          </li>
-        ))}
-      </ul>
-      <p>total of {sum} excercises</p>
+      {courses.map((course) => (
+        <div>
+          <h2>{course.name}</h2>
+          {course.parts.map((part) => (
+            <p>
+              {part.name} {part.exercises}
+            </p>
+          ))}
+          {course.parts.reduce(function (sum, part) {
+            return sum + part.exercises;
+          }, 0)}
+        </div>
+      ))}
     </>
   );
 };
