@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import Filter from "./components/Filter";
+import PersonForm from "./components/PersonForm";
+import Persons from "./components/Persons";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -46,47 +49,19 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with <input value={search} onChange={handleSearchName} />
-      </div>
+      <Filter search={search} handleSearchName={handleSearchName} />
 
       <h2>add a new</h2>
-      <form onSubmit={addName}>
-        <div>
-          name : <input value={newName} onChange={handleNewName} />
-          number: <input value={newNumber} onChange={handleNewNumber} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <PersonForm
+        addName={addName}
+        newName={newName}
+        handleNewName={handleNewName}
+        newNumber={newNumber}
+        handleNewNumber={handleNewNumber}
+      />
 
       <h2>Numbers</h2>
-      <div>
-        {search.length === 0
-          ? persons.map((person) => (
-              <p key={person.name}>
-                {person.name} {person.number}
-              </p>
-            ))
-          : persons
-              .filter((person) =>
-                person.name.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((person) => (
-                <p>
-                  {person.name}
-                  {person.number}
-                </p>
-              ))}
-
-        {/* {persons.map((person) => (
-          
-          <p>
-            {person.name} {person.number}
-          </p>
-        ))} */}
-      </div>
+      <Persons persons={persons} search={search} />
     </div>
   );
 };
