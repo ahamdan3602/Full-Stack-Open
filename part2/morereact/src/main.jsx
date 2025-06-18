@@ -1,4 +1,3 @@
-import axios from "axios";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
@@ -7,12 +6,12 @@ import App from "./App";
 //   console.log(res);
 // });
 
-axios.get("http://localhost:3001/notes").then((res) => {
-  const notes = res.data;
-  ReactDOM.createRoot(document.getElementById("root")).render(
-    <App notes={notes} />
-  );
-});
+// axios.get("http://localhost:3001/notes").then((res) => {
+//   const notes = res.data;
+//   ReactDOM.createRoot(document.getElementById("root")).render(
+//     <App notes={notes} />
+//   );
+// });
 
 // the axios get method returns a promise
 /**
@@ -23,3 +22,4 @@ axios.get("http://localhost:3001/notes").then((res) => {
  * generates a sound file given a configuration record and two callback functions: one called if
  * the audio file is successfully created, and the other called if an error occurs.
  */
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
