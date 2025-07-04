@@ -1,14 +1,25 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import axios from "axios";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [search, setNewSearch] = useState("");
+
+  const hook = () => {
+    console.log("effect");
+    axios.get("http://localhost:3001/persons").then((res) => {
+      console.log("promise fufilled");
+      setPersons(res.data);
+    });
+  };
+
+  useEffect(hook, []);
 
   const handleSearchName = (event) => {
     setNewSearch(event.target.value);
