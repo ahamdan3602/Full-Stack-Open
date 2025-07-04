@@ -29,12 +29,13 @@ import App from "./App";
 //   );
 // });
 
-const promise = axios.get("http://localhost:3001/notes");
-console.log(promise);
-
-const promise2 = axios.get("http://localhost:3001/foobar");
-console.log(promise2);
-
+axios.get("http://localhost:3001/notes").then((res) => {
+  const notes = res.data;
+  console.log(notes);
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+});
+// const promise2 = axios.get("http://localhost:3001/foobar");
+// console.log(promise2);
 // the axios get method returns a promise
 /**
  * a promise is an object representing the eventual completion or failure of an asynchronous operation
@@ -44,4 +45,3 @@ console.log(promise2);
  * generates a sound file given a configuration record and two callback functions: one called if
  * the audio file is successfully created, and the other called if an error occurs.
  */
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);

@@ -8,18 +8,20 @@ const App = () => {
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
 
-  useEffect(() => {
+  const hook = () => {
     console.log("effect");
-
-    const eventHandler = (res) => {
+    axios.get("http://localhost:3001/notes").then((res) => {
       console.log("promise fufilled");
       setNotes(res.data);
-    };
+    });
+  };
 
-    const promise = axios.get("https://localhost:3001/notes");
-    promise.then(eventHandler);
-  });
+  useEffect(hook, []);
 
+  console.log("render", notes.length, "notes");
+  /**
+   * Fetch
+   */
   /**
    * setup: The setup is the function with the Effect's logic. Setup may also optionally return a cleanup function.
    * dependencies: list of all reactive values referenced inside the setup code.
