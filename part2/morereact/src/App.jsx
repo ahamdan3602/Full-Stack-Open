@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,6 +9,10 @@ const App = () => {
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
 
+  const toggleImportanceOf = (id) => {
+    console.log("importance of " + id + " needs to be toggled");
+  };
+
   const hook = () => {
     console.log("effect");
     axios.get("http://localhost:3001/notes").then((res) => {
@@ -17,6 +22,11 @@ const App = () => {
   };
 
   useEffect(hook, []);
+  /**
+   * Now we can see more clearly that the function useEffect takes two parameters.
+   * The first is a function, the effect itself. According to the documentation:
+   *** By default, effects run after every completed render, but you can choose to fire it only when certain values have changed.
+   */
 
   console.log("render", notes.length, "notes");
   /**
@@ -42,11 +52,16 @@ const App = () => {
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5,
-      id: String(notes.length) + 1,
+      // id: String(notes.length) + 1,
     };
-    setNotes(notes.concat(noteObject));
-    setNewNote("");
-    console.log("button clicked", event.target);
+    // setNotes(notes.concat(noteObject));
+    // setNewNote("");
+    // console.log("button clicked", event.target);
+    axios.post("http://localhost:3001/notes", noteObject).then((res) => {
+      console.log(res);
+      setNotes(notes.concat(res.data));
+      setNewNote("");
+    });
   };
 
   const handleNoteChange = (event) => {
@@ -59,7 +74,11 @@ const App = () => {
       <h1>Notes</h1>
       <ul>
         {notes.map((note) => (
-          <Note key={note.id} note={note} />
+          <Note
+            key={note.id}
+            note={note}
+            toggleImportance={() => toggleImportanceOf(note.id)}
+          />
         ))}
       </ul>
 
