@@ -9,7 +9,12 @@ const baseURL = "http://localhost:3001/notes";
 
 const getAll = () => {
   const req = axios.get(baseURL);
-  return req.then((res) => res.data);
+  const nonExisting = {
+    id: 10000,
+    content: "This note is not saved to server",
+    important: true,
+  };
+  return req.then((res) => res.data.concat(nonExisting));
 };
 
 const create = (newObject) => {
@@ -24,4 +29,4 @@ const update = (id, newObject) => {
   // return axios.put(`${baseURL}/${id}`, newObject);
 };
 
-export default { getAll, create, update };
+export default { getAll, create, remove };
