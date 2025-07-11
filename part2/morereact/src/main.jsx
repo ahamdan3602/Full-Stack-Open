@@ -1,6 +1,7 @@
 import axios from "axios";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import "./index.css";
 
 // const xhttp = new XMLHttpRequest(); // object representing the http request
 // // If the change in state means that the response to the request has arrived,

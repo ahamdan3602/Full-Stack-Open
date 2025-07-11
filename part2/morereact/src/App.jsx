@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Note from "./components/Note.jsx";
 import noteService from "./services/notes";
+import Notification from "./components/Notification.jsx";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
   const [showAll, setShowAll] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("Some error happened...");
 
   useEffect(() => {
     noteService.getAll().then((initialNotes) => {
@@ -26,13 +28,18 @@ const App = () => {
         setNotes(notes.map((note) => (note.id === id ? returnedNote : note)));
       })
       .catch((err) => {
-        alert(`the note '${note.content}' was already deleted from sever`);
+        setErrorMessage(`Note ${note.content} was already removed from server`);
+
+        setTimeout(() => {
+          setErrorMessage(null);
+        }, 5000);
+
         setNotes(notes.filter((n) => n.id !== id));
       });
   };
 
   const addNote = (event) => {
-    eventreventDefault();
+    event.preventDefault();
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5,
@@ -52,6 +59,7 @@ const App = () => {
   return (
     <div>
       <h1>Notes</h1>
+      <Notification message={errorMessage} />
       <ul>
         {notes.map((note) => (
           <Note
