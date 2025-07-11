@@ -29,4 +29,4 @@ const update = (id, newObject) => {
   // return axios.put(`${baseURL}/${id}`, newObject);
 };
 
-export default { getAll, create, remove };
+export default { getAll, create, update };

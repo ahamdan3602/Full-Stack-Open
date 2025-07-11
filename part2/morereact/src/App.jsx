@@ -32,7 +32,7 @@ const App = () => {
   };
 
   const addNote = (event) => {
-    event.preventDefault();
+    eventreventDefault();
     const noteObject = {
       content: newNote,
       important: Math.random() < 0.5,
