@@ -11,12 +11,23 @@ const Persons = ({ search }) => {
     });
   }, []);
 
+  // const handleDelete = (id) => {
+  //   if (window.confirm("Are you sure you want to delete this person?")) {
+  //     numberService.remove(id).then(() => {
+  //       console.log(`Deleted person with id: ${id}`);
+  //       // Update state to remove the deleted person
+  //       setPersons(persons.filter((person) => person.id !== id));
+  //     });
+  //   }
+  // };
+
   const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this person?")) {
+    if (window.confirm("Are you sure you want to delete this number")) {
       numberService.remove(id).then(() => {
-        console.log(`Deleted person with id: ${id}`);
-        // Update state to remove the deleted person
         setPersons(persons.filter((person) => person.id !== id));
+        console.log(
+          "Once the promise returns a status of 200, then it will update the state accordingly."
+        );
       });
     }
   };
